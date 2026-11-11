@@ -1,0 +1,65 @@
+---
+const links = [
+  { href: '/parcs-i-jardins', label: 'Brigades de Parcs i Jardins i arbrat de Tarragona' },
+  { href: '/brigades-de-parcs-i-jardins', label: 'Brigades de Parcs i Jardins' },
+  { href: '/mapa-de-arbrat-de-tarragona', label: "Mapa de l'arbrat de Tarragona" },
+  { href: '/beneficis-arbrat', label: "Beneficis de l'arbrat" },
+];
+
+const normalize = (p: string) => (p.length > 1 ? p.replace(/\/$/, '') : p);
+const current = normalize(Astro.url.pathname);
+---
+
+<header class="topbar">
+  <nav class="nav" aria-label="Navegació principal">
+    <div class="nav-bar">
+      <span class="nav-title">{links.find((l) => l.href === current)?.label ?? links[0].label}</span>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        aria-label="Obre el menú"
+      >
+        <svg class="icon-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg class="icon-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+    <ul id="nav-menu">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('.nav');
+  const toggle = nav?.querySelector<HTMLButtonElement>('.nav-toggle');
+
+  const setOpen = (open: boolean) => {
+    if (!nav || !toggle) return;
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Tanca el menú' : 'Obre el menú');
+  };
+
+  toggle?.addEventListener('click', () => setOpen(!nav!.classList.contains('is-open')));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav?.classList.contains('is-open')) {
+      setOpen(false);
+      toggle?.focus();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (nav && !nav.contains(e.target as Node)) setOpen(false);
+  });
+</script>

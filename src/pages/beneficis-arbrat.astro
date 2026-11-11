@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const benefits = [
+  {
+    title: 'Els arbres: molt més que ombra',
+    img: '/images/ombra.jpg',
+    text: 'Els arbres formen part de la nostra vida quotidiana i aporten beneficis essencials per a la salut, el medi ambient i la qualitat de vida als nostres municipis.',
+  },
+  {
+    title: 'Benestar i salut',
+    img: '/images/benestar.jpg',
+    text: "Els arbres ens apropen a la natura i fan que els espais urbans siguin més agradables i acollidors. La seva presència ajuda a reduir l'estrès, afavoreix el benestar emocional i convida a passejar i gaudir de l'espai públic.",
+  },
+  {
+    title: 'Aire més net i menys calor',
+    img: '/images/aire.jpg',
+    text: "Les fulles retenen pols i contaminants atmosfèrics, mentre que l'ombra i l'evapotranspiració contribueixen a reduir la temperatura ambiental. Això és especialment important durant els episodis de calor intensa.",
+  },
+  {
+    title: 'Refugi per a la biodiversitat',
+    img: '/images/biodiversitat.jpg',
+    text: 'Els arbres proporcionen aliment, refugi i llocs de nidificació per a ocells, insectes pol·linitzadors i altres espècies, contribuint a mantenir ecosistemes urbans més vius i equilibrats.',
+  },
+  {
+    title: 'Patrimoni, paisatge i cultura',
+    img: '/images/patrimoni.jpg',
+    text: 'Molts arbres formen part de la identitat dels nostres barris i pobles. Embelleixen el paisatge, generen espais de trobada i constitueixen un valuós patrimoni natural i cultural per a les generacions presents i futures.',
+  },
+  {
+    title: 'Una inversió a futur',
+    img: '/images/inversio.jpg',
+    text: 'Els arbres no només aporten beneficis ambientals i socials, sinó que també tenen un valor econòmic real gràcies als serveis ecosistèmics que ofereixen. Per això, conservar-los i gestionar-los adequadament és una inversió en salut, sostenibilitat i qualitat de vida.',
+  },
+];
+---
+
+<Layout title="Beneficis de l'arbrat">
+  <section class="section section--spaced" style="padding-bottom: 0">
+    <h1 class="page-title">Beneficis de l'arbrat</h1>
+  </section>
+
+  <section class="section section--spaced prose">
+    <p>
+      L'arbrat és un dels elements més valuosos del nostre entorn urbà i natural. Més enllà de la seva funció
+      ornamental, els arbres formen una infraestructura verda essencial que contribueix al benestar de les persones, a
+      la qualitat ambiental i a la sostenibilitat dels municipis.
+    </p>
+    <p>
+      Present als carrers, places, parcs i espais naturals, l'arbrat acompanya la vida quotidiana de la ciutadania i
+      configura part de la identitat i el paisatge de les nostres poblacions. Cada arbre aporta valor al seu entorn,
+      ajudant a crear espais més saludables, confortables i agradables per viure-hi, treballar-hi i gaudir-ne.
+    </p>
+    <p>
+      La conservació i la gestió responsable de l'arbrat són fonamentals per garantir els nombrosos beneficis que
+      ofereix a la societat. Per aquest motiu, els arbres es consideren un patrimoni viu que cal conèixer, respectar i
+      preservar per a les generacions presents i futures.
+    </p>
+    <p>A continuació, es presenten alguns dels principals beneficis que l'arbrat aporta a la ciutadania:</p>
+  </section>
+
+  <div class="benefits">
+    {benefits.map((b) => (
+      <article class="benefit">
+        <h2>{b.title}</h2>
+        <img src={b.img} alt={b.title} loading="lazy" />
+        <p>{b.text}</p>
+      </article>
+    ))}
+  </div>
+</Layout>

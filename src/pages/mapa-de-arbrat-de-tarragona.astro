@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const POWERBI_URL =
+  'https://app.powerbi.com/view?r=eyJrIjoiNjM3NjI3ZjktMzkwOC00YmU4LTg0ODktZDQ0MGZiZWU3MDQwIiwidCI6ImVhNzQ4Y2QyLWZiNzUtNGM2Ni05Yjc3LThmNmJjNmQxNjlkYSIsImMiOjl9';
+---
+
+<Layout title="Mapa de l'arbrat de Tarragona">
+  <section class="section" style="padding-top: 30px">
+    <h1 class="page-title">Mapa de l'arbrat de Tarragona</h1>
+  </section>
+
+  <section class="section prose" style="padding-top: 20px; padding-bottom: 20px">
+    <p>
+      A continuació es mostra el mapa interactiu de l'inventari de l'arbrat de Tarragona, on trobem diferents apartats:
+    </p>
+    <ul>
+      <li><strong>Filtres:</strong> permet filtrar per determinades característiques.</li>
+      <li>
+        <strong>Mapa districtes:</strong> permet observar en un mapa els diferents districtes i el número d'arbres filtrats
+        o seleccionats.
+      </li>
+      <li>
+        <strong>Mapa arbrat:</strong> permet observar en un mapa els diferents arbres filtrats o seleccionats. Es
+        distingeixen per singularitat de l'arbre, és a dir, si són singulars o monumentals. Seleccionant la singularitat
+        concreta a la llegenda del mapa permet veure millor la seva ubicació.
+      </li>
+      <li>
+        <strong>Número d'arbres per espècie:</strong> permet identificar el número d'arbres per espècie de l'arbrat
+        filtrat o seleccionat.
+        <ul>
+          <li>fent clic a "Fitxa tècnica" permet veure la fitxa tècnica de l'espècie filtrada o seleccionada</li>
+        </ul>
+      </li>
+    </ul>
+    <p>
+      <em>Dintre d'un mateix visual o filtre, es permet la selecció múltiple mitjançant el botó Ctrl</em> del teclat.
+    </p>
+    <p>
+      Per veure el mapa interactiu en pantalla completa, prem el botó inferior dret
+      <svg class="inline-icon" width="17" height="17" viewBox="0 0 24 24" aria-label="pantalla completa" role="img">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"></path>
+      </svg>.
+    </p>
+    <p>
+      Si vols conèixer sobre la importància de l'arbrat i els seus beneficis clic
+      <a href="/beneficis-arbrat" target="_blank" rel="noopener">aquí</a>
+    </p>
+  </section>
+
+  <div class="embed">
+    <div class="embed-mobile">
+      <p>Per veure'l més gran, gira el mòbil en horitzontal.</p>
+    </div>
+    <iframe title="Mapa de l'arbrat de Tarragona (Power BI)" src={POWERBI_URL} allowfullscreen loading="lazy"></iframe>
+  </div>
+</Layout>
