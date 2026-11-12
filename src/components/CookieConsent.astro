@@ -1,0 +1,106 @@
+---
+// Bàner de cookies (1a capa) + panell de configuració (2a capa).
+// No és un "mur de cookies": la web es pot fer servir sencera encara que es rebutgi;
+// només queda bloquejat el contingut de tercers que instal·la cookies (vegeu ConsentEmbed.astro).
+---
+
+<section class="cookie-banner" id="cookie-banner" aria-labelledby="cookie-banner-title" hidden>
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-text">
+      <h2 id="cookie-banner-title">Utilitzem cookies de tercers</h2>
+      <p>
+        Aquest web no instal·la cookies pròpies d'analítica ni de publicitat. El mapa de l'arbrat és un informe de
+        Microsoft Power BI que, si el carregues, pot instal·lar cookies de Microsoft. No el carregarem si no ho acceptes.
+        Pots canviar la teva decisió en qualsevol moment des de «Configuració de cookies», al peu de pàgina.
+        <a href="/politica-de-cookies">Més informació a la política de cookies</a>.
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn" data-cookie-reject>Rebutjar</button>
+      <button type="button" class="cookie-btn" data-cookie-settings>Configurar</button>
+      <button type="button" class="cookie-btn" data-cookie-accept>Acceptar</button>
+    </div>
+  </div>
+</section>
+
+<dialog class="cookie-dialog" id="cookie-dialog" aria-labelledby="cookie-dialog-title">
+  <form method="dialog" class="cookie-dialog-form">
+    <h2 id="cookie-dialog-title">Configuració de cookies</h2>
+    <p>
+      Tria quines cookies acceptes. Pots canviar-ho quan vulguis des del peu de pàgina. Tens més detalls a la
+      <a href="/politica-de-cookies">política de cookies</a>.
+    </p>
+
+    <div class="cookie-option">
+      <div>
+        <h3>Necessàries</h3>
+        <p>
+          Només es desa al teu navegador la decisió que prens en aquest panell, perquè no t'ho tornem a preguntar. Són
+          imprescindibles i no es poden desactivar.
+        </p>
+      </div>
+      <label class="cookie-switch">
+        <input type="checkbox" checked disabled />
+        <span>Sempre actives</span>
+      </label>
+    </div>
+
+    <div class="cookie-option">
+      <div>
+        <h3>Contingut de tercers (Microsoft Power BI)</h3>
+        <p>
+          Permet carregar el mapa interactiu de l'arbrat, que Microsoft serveix des de app.powerbi.com i que pot
+          instal·lar les seves pròpies cookies. Si no ho acceptes, el mapa no es mostrarà.
+        </p>
+      </div>
+      <label class="cookie-switch">
+        <input type="checkbox" id="cookie-embeds" />
+        <span>Acceptar</span>
+      </label>
+    </div>
+
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn" data-cookie-reject>Rebutjar totes</button>
+      <button type="button" class="cookie-btn" data-cookie-save>Desar la selecció</button>
+      <button type="button" class="cookie-btn" data-cookie-accept>Acceptar totes</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+  import { CONSENT_EVENT, getConsent, setConsent } from '../lib/consent';
+
+  const banner = document.getElementById('cookie-banner') as HTMLElement;
+  const dialog = document.getElementById('cookie-dialog') as HTMLDialogElement;
+  const embedsInput = document.getElementById('cookie-embeds') as HTMLInputElement;
+
+  const decide = (embeds: boolean) => {
+    setConsent({ embeds });
+    banner.hidden = true;
+    if (dialog.open) dialog.close();
+  };
+
+  const openSettings = () => {
+    // Sense caselles premarcades: reflecteix només el que l'usuari ja hagi acceptat.
+    embedsInput.checked = getConsent()?.embeds === true;
+    dialog.showModal();
+  };
+
+  if (!getConsent()) banner.hidden = false;
+
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest<HTMLElement>(
+      '[data-cookie-accept], [data-cookie-reject], [data-cookie-save], [data-cookie-settings]',
+    );
+    if (!target) return;
+    if (target.hasAttribute('data-cookie-accept')) decide(true);
+    else if (target.hasAttribute('data-cookie-reject')) decide(false);
+    else if (target.hasAttribute('data-cookie-save')) decide(embedsInput.checked);
+    else if (target.hasAttribute('data-cookie-settings')) openSettings();
+  });
+
+  // Si es dona el consentiment des d'un altre lloc (p. ex. el botó del mapa), amaguem el bàner.
+  document.addEventListener(CONSENT_EVENT, () => {
+    banner.hidden = true;
+  });
+</script>

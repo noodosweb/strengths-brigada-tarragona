@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ConsentEmbed from '../components/ConsentEmbed.astro';
 
 const POWERBI_URL =
   'https://app.powerbi.com/view?r=eyJrIjoiNjM3NjI3ZjktMzkwOC00YmU4LTg0ODktZDQ0MGZiZWU3MDQwIiwidCI6ImVhNzQ4Y2QyLWZiNzUtNGM2Ni05Yjc3LThmNmJjNmQxNjlkYSIsImMiOjl9';
@@ -52,6 +53,6 @@ const POWERBI_URL =
     <div class="embed-mobile">
       <p>Per veure'l més gran, gira el mòbil en horitzontal.</p>
     </div>
-    <iframe title="Mapa de l'arbrat de Tarragona (Power BI)" src={POWERBI_URL} allowfullscreen loading="lazy"></iframe>
+    <ConsentEmbed src={POWERBI_URL} title="Mapa de l'arbrat de Tarragona (Power BI)" provider="Microsoft Power BI" />
   </div>
 </Layout>

@@ -1,0 +1,59 @@
+---
+// Iframe de tercers bloquejat fins que hi ha consentiment.
+// L'URL no es posa a `src` al servidor: sense JavaScript o sense consentiment, el navegador no contacta mai el tercer.
+interface Props {
+  src: string;
+  title: string;
+  /** Nom del servei que es mostra a l'avís, p. ex. "Microsoft Power BI". */
+  provider: string;
+}
+
+const { src, title, provider } = Astro.props;
+---
+
+<div class="consent-embed" data-consent-embed data-src={src} data-title={title}>
+  <div class="embed-placeholder" data-consent-placeholder>
+    <p class="embed-placeholder-title">{title}</p>
+    <p>
+      Aquest contingut el serveix {provider} i pot instal·lar cookies de tercers. Per veure'l, cal que acceptis les
+      cookies de contingut de tercers.
+    </p>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn" data-cookie-accept>Acceptar i carregar</button>
+      <button type="button" class="cookie-btn" data-cookie-settings>Configuració de cookies</button>
+    </div>
+    <p class="embed-placeholder-alt">
+      També el pots <a href={src} target="_blank" rel="noopener">obrir directament a {provider}</a>.
+      <a href="/politica-de-cookies">Política de cookies</a>.
+    </p>
+    <noscript><p>Cal activar JavaScript per carregar aquest contingut.</p></noscript>
+  </div>
+</div>
+
+<script>
+  import { CONSENT_EVENT, hasEmbedsConsent } from '../lib/consent';
+
+  const sync = () => {
+    const allowed = hasEmbedsConsent();
+    document.querySelectorAll<HTMLElement>('[data-consent-embed]').forEach((box) => {
+      const placeholder = box.querySelector<HTMLElement>('[data-consent-placeholder]')!;
+      const iframe = box.querySelector('iframe');
+      if (allowed && !iframe) {
+        const frame = document.createElement('iframe');
+        frame.src = box.dataset.src!;
+        frame.title = box.dataset.title!;
+        frame.allowFullscreen = true;
+        frame.loading = 'lazy';
+        box.append(frame);
+        placeholder.hidden = true;
+      } else if (!allowed && iframe) {
+        // Consentiment retirat: es descarrega el contingut de tercers.
+        iframe.remove();
+        placeholder.hidden = false;
+      }
+    });
+  };
+
+  sync();
+  document.addEventListener(CONSENT_EVENT, sync);
+</script>

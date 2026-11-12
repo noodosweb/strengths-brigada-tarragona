@@ -1,0 +1,29 @@
+---
+const links = [
+  { href: '/avis-legal', label: 'Avís legal' },
+  { href: '/politica-de-privacitat', label: 'Política de privacitat' },
+  { href: '/politica-de-cookies', label: 'Política de cookies' },
+];
+
+const normalize = (p: string) => (p.length > 1 ? p.replace(/\/$/, '') : p);
+const current = normalize(Astro.url.pathname);
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-copy">© {year} Ajuntament de Tarragona</p>
+    <nav aria-label="Informació legal">
+      <ul class="footer-links">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a>
+          </li>
+        ))}
+        <li>
+          <button type="button" class="footer-link-btn" data-cookie-settings>Configuració de cookies</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</footer>

@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+// Adaptat de https://www.tarragona.cat/politica-de-cookies al domini www.brigadadetarragona.cat.
+// Aquest web no fa servir analítica pròpia; l'única font de cookies és l'informe de Power BI incrustat,
+// que només es carrega amb consentiment (src/components/ConsentEmbed.astro). Si s'afegeixen cookies noves,
+// actualitzeu aquesta pàgina i incrementeu CONSENT_VERSION a src/lib/consent.ts.
+---
+
+<Layout title="Política de cookies">
+  <section class="section section--title">
+    <h1 class="page-title">Política de cookies</h1>
+  </section>
+
+  <section class="section section--spaced prose legal">
+    <p>
+      En compliment de l'article 22 de la Llei de Serveis de la Societat de la Informació i Comerç Electrònic i la Guia
+      sobre l'ús de les cookies de l'AEPD, l'informem sobre l'ús de cookies al lloc web www.brigadadetarragona.cat.
+    </p>
+    <p>
+      Les cookies són petits arxius de text en els quals els navegadors emmagatzemen informació durant les visites a les
+      pàgines web. A les cookies s'hi poden recollir dades com l'adreça IP, l'adreça que s'està visitant, el sistema
+      operatiu o l'idioma de navegació, a més d'altra informació. Aquesta informació no queda associada a cap persona
+      concreta; no obstant això, depenent de la informació que contingui i de la forma com se'n faci ús al seu equip, es
+      poden utilitzar per identificar l'usuari.
+    </p>
+
+    <h3>Responsable</h3>
+    <p>
+      El responsable d'aquest lloc web és l'Ajuntament de Tarragona (CIF P4315000B, Plaça de la Font, 1, 43003
+      Tarragona, <a href="mailto:ajuntament@tarragona.cat">ajuntament@tarragona.cat</a>). Podeu consultar-ne totes les
+      dades a l'<a href="/avis-legal">avís legal</a>.
+    </p>
+
+    <h3>Cookies i tecnologies similars que utilitza aquest lloc web</h3>
+    <p>
+      Aquest lloc web no instal·la cookies pròpies d'analítica, de personalització ni de publicitat, i no fa perfils
+      dels usuaris. Només s'utilitzen els elements següents:
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Titular</th>
+            <th scope="col">Tipus i finalitat</th>
+            <th scope="col">Durada</th>
+            <th scope="col">Consentiment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><code>brigada-cookie-consent</code> (emmagatzematge local del navegador)</th>
+            <td>Pròpia (brigadadetarragona.cat)</td>
+            <td>Tècnica. Desa la decisió de l'usuari sobre les cookies (què ha acceptat, data i versió de la política) per no tornar-li a preguntar a cada pàgina.</td>
+            <td>12 mesos</td>
+            <td>No cal: és necessària per complir l'obligació de recollir i respectar el consentiment.</td>
+          </tr>
+          <tr>
+            <th scope="row">Cookies de Microsoft Power BI (app.powerbi.com i dominis de Microsoft)</th>
+            <td>Tercers (Microsoft)</td>
+            <td>
+              Necessàries per al funcionament de l'informe incrustat a la pàgina
+              <a href="/mapa-de-arbrat-de-tarragona">Mapa de l'arbrat de Tarragona</a> (sessió, equilibri de càrrega,
+              preferències de l'informe). Microsoft també les pot fer servir per a les seves pròpies finalitats, que
+              descriu a la seva <a href="https://privacy.microsoft.com/ca-es/privacystatement" target="_blank" rel="noopener">declaració de privadesa</a>.
+            </td>
+            <td>De sessió fins a la durada que estableixi Microsoft</td>
+            <td>Sí. El mapa no es carrega i no es contacta Microsoft fins que l'usuari ho accepta.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Com donem i gestionem el consentiment</h3>
+    <ul>
+      <li>
+        En la primera visita es mostra un avís amb les opcions «Acceptar», «Rebutjar» i «Configurar», amb la mateixa
+        visibilitat. Continuar navegant, desplaçar-se per la pàgina o tancar l'avís no es considera acceptació.
+      </li>
+      <li>
+        Mentre no s'accepten les cookies de contingut de tercers, l'informe de Power BI no es carrega i en el seu lloc es
+        mostra un avís que permet acceptar-les per veure'l. La resta del lloc web es pot fer servir sense cap limitació.
+      </li>
+      <li>
+        Podeu canviar o retirar el consentiment en qualsevol moment des de l'enllaç «Configuració de cookies» que hi
+        ha al peu de totes les pàgines. Si el retireu, el mapa es descarrega immediatament.
+      </li>
+      <li>
+        La decisió es conserva 12 mesos. Passat aquest termini, o si aquesta política canvia de manera rellevant, us
+        tornarem a demanar el consentiment.
+      </li>
+    </ul>
+    <p>
+      Retirar el consentiment impedeix que s'instal·lin cookies noves, però no esborra les que Microsoft ja hagi
+      instal·lat, perquè pertanyen al seu domini. Les podeu esborrar des de la configuració del navegador, tal com
+      s'explica més avall.
+    </p>
+    <p>
+      Mitjançant l'ús de cookies no es porta a terme cap elaboració de perfils ni tractaments que impliquin decisions
+      automatitzades amb efectes jurídics per a l'usuari o que l'afectin significativament de manera similar.
+    </p>
+
+    <h3>Transferència internacional de dades</h3>
+    <p>
+      L'Ajuntament de Tarragona no realitza transferències internacionals de dades personals. Si accepteu les cookies de
+      Microsoft Power BI, Microsoft pot tractar la informació que recullen fora de l'Espai Econòmic Europeu, d'acord amb
+      les garanties que descriu a la seva declaració de privadesa (Microsoft està adherida al Marc de privadesa de dades
+      UE-EUA).
+    </p>
+
+    <h3>Com es poden administrar les cookies al navegador?</h3>
+    <p>
+      A més del panell de «Configuració de cookies», els usuaris que no desitgin rebre cookies, vulguin limitar la
+      instal·lació de determinades cookies, vulguin ser informats de la seva instal·lació o vulguin esborrar les que ja
+      tenen poden configurar el seu navegador a aquest efecte.
+    </p>
+    <p>
+      L'usuari pot gestionar les cookies instal·lades al seu equip mitjançant la configuració de les opcions del
+      navegador. Les instruccions per a la gestió de cookies dels navegadors més habituals les pot trobar en els enllaços
+      següents:
+    </p>
+    <ul>
+      <li><a href="https://support.google.com/chrome/answer/95647?hl=ca" target="_blank" rel="noopener">Google Chrome</a></li>
+      <li><a href="https://support.mozilla.org/ca/kb/enable-and-disable-cookies-website-preferences" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+      <li><a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Microsoft Edge</a></li>
+      <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+      <li><a href="https://help.opera.com/en/latest/web-preferences/#cookies" target="_blank" rel="noopener">Opera</a></li>
+    </ul>
+    <p>
+      En cas que utilitzeu altres navegadors o plataformes, si us plau, consulteu la documentació específica
+      subministrada per l'empresa desenvolupadora del navegador.
+    </p>
+    <p>
+      Si bloquegeu l'ús de cookies al vostre navegador és possible que alguns serveis o funcionalitats de la pàgina web,
+      com el mapa de Power BI, no estiguin disponibles.
+    </p>
+  </section>
+</Layout>

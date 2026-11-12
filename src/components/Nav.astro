@@ -6,6 +6,9 @@ const links = [
   { href: '/beneficis-arbrat', label: "Beneficis de l'arbrat" },
 ];
 
+// Les pàgines que no són al menú (p. ex. les legals) mostren el seu propi títol a la barra mòbil.
+const { title } = Astro.props as { title?: string };
+
 const normalize = (p: string) => (p.length > 1 ? p.replace(/\/$/, '') : p);
 const current = normalize(Astro.url.pathname);
 ---
@@ -13,7 +16,7 @@ const current = normalize(Astro.url.pathname);
 <header class="topbar">
   <nav class="nav" aria-label="Navegació principal">
     <div class="nav-bar">
-      <span class="nav-title">{links.find((l) => l.href === current)?.label ?? links[0].label}</span>
+      <span class="nav-title">{links.find((l) => l.href === current)?.label ?? title ?? links[0].label}</span>
       <button
         class="nav-toggle"
         type="button"
