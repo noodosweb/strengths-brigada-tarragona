@@ -204,17 +204,20 @@ a {
 }
 
 /* ---------- Power BI ---------- */
+/* El Power BI s'escala per encaixar mantenint el 16:9: si l'alçada queda curta, deixa franges buides als laterals.
+   Per això l'alçada es calcula a partir de l'amplada (16:9 + ~56px de la barra inferior de Power BI). */
 .embed {
-  width: 100%;
-  max-width: 1500px;
+  width: 90%;
+  max-width: 2000px;
   margin: 0 auto;
   padding: 10px;
+  container-type: inline-size;
 }
 
 .embed iframe,
 .embed-placeholder {
   width: 100%;
-  height: min(85vh, 860px);
+  height: calc(100cqw * 0.5625 + 56px);
   min-height: 500px;
   border: 0;
   display: block;
@@ -289,6 +292,7 @@ a {
    (+ la barra inferior de Power BI) per no deixar espai en blanc. */
 @media (max-width: 900px) {
   .embed {
+    width: 100%;
     padding: 0 0 24px;
   }
   .embed iframe {
